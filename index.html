@@ -10,19 +10,25 @@
 </head>
 <body>
     <h1 id =miTitulo >TAREA 6</h1>
-    <button onclick ="mostrarMensaje()">Boton mágico</button>
+    <h2>Seleccione el vendedor</h2>
+    <select id="seleccionVendedor"></select>  
+    <button id="btn">Capturar selección</button>  
+   
+    <h2>Seleccione el producto vendido</h2>
+    <select id="seleccionProducto"></select>  
+    <button id="btnP">Capturar selección</button>
+
+    <input type="text" id="cantidadInput" placeholder="Ingrese la cantidad">
+   <button onclick="capturarCantidad()">Capturar</button>
+
+   <h2>Desea añadir mas productos?</h2>
+   <button id="btnSi"onclick="continuarCaptura(true)">SI</button> 
+    <button id="btnNo"onclick="continuarCaptura(false)">NO</button>
+
+
     <script src="script.js"></script>
-   
-   
 </body>
 <header>
-    <main>
-        <section id="titulo">
-            <h2>DOM</h2>
-            
-        
-        </section>
-
-    </main>
+   
 </header>
 </html>
