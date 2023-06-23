@@ -10,20 +10,11 @@
 </head>
 <body>
     <h1 id =miTitulo >TAREA 6</h1>
-    <h2>Seleccione el vendedor</h2>
-    <select id="seleccionVendedor"></select>  
-    <button id="btn">Capturar selección</button>  
    
-    <h2>Seleccione el producto vendido</h2>
-    <select id="seleccionProducto"></select>  
-    <button id="btnP">Capturar selección</button>
-
-    <input type="text" id="cantidadInput" placeholder="Ingrese la cantidad">
-   <button onclick="capturarCantidad()">Capturar</button>
-
-   <h2>Desea añadir mas productos?</h2>
-   <button id="btnSi"onclick="continuarCaptura(true)">SI</button> 
-    <button id="btnNo"onclick="continuarCaptura(false)">NO</button>
+      
+   <button onclick="calcularTotal()">Calcular ventas</button>
+   <button onclick="determinarEmpleadoDelMes()">Empleado del Mes</button>
+   
 
 
     <script src="script.js"></script>

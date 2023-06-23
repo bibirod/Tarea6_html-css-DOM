@@ -1,66 +1,84 @@
-let productos =["Aqua","emocion","alegria","frescura"];
-let precios = [200,180,160,150];
-let vendedores = ["Juana","Pedro"];
-let continuar = true;
-
-function elegirVendedor(){
-let vendedorAseleccionar = document.getElementById('seleccionVendedor');
-
+let productos = [
+  { nombre: "Aqua", precio: 200 },
+  { nombre: "Emoción", precio: 180 },
+  { nombre: "Alegría", precio: 160 },
+  { nombre: "Frescura", precio: 150 }
+];
+let vendedores = ["Juana", "Pedro"];
+function ingresarVentas() {
+  let ventas = [];
 for (let i = 0; i < vendedores.length; i++) {
-    let opciones = document.createElement('option');
-    opciones.value = vendedores[i];
-    opciones.text = vendedores[i];
-    vendedorAseleccionar.appendChild(opciones);
+  alert(`Ingrese las ventas de ${vendedores[i]}:`);
+
+  let vendedorVentas = {};
+
+  for (let j = 0; j < productos.length; j++) {
+    let cantidad = prompt(`Ingrese la cantidad vendida de ${productos[j].nombre}:`);
+    
+    if (isNaN(cantidad)) {
+      alert("Error: debe ingresar un valor numérico.");
+      return;
+    }
+    
+    vendedorVentas[productos[j].nombre] = parseInt(cantidad);
   }
 
-  let vendedorSeleccionado = document.getElementById('seleccionVendedor');
-  let vendedorGuardado = document.getElementById('btn');
-  
-  vendedorGuardado.addEventListener('click', function() {
-    let seleccion = vendedorSeleccionado.value;
-    console.log('Opción seleccionada:', seleccion);
-  });
+  ventas.push(vendedorVentas);
 }
-function capturarVentas(){
-  let productoAseleccionar = document.getElementById('seleccionProducto');
 
-  for (let i = 0; i < productos.length; i++) {
-      let opcionesP = document.createElement('option');
-      opcionesP.value = productos[i];
-      opcionesP.text = productos[i];
-      productoAseleccionar.appendChild(opcionesP);
+return ventas;
+}
+
+function calcularTotal(ventas) {
+  let totales = [];
+
+  for (let i = 0; i < ventas_capturadas.length; i++) {
+    let vendedor = vendedores[i];
+    let total = 0;
+
+    for (let j = 0; j < productos.length; j++) {
+      total += ventas_capturadas[i][productos[j].nombre] * productos[j].precio;
     }
-  
-    let productoSeleccionado = document.getElementById('seleccionProducto');
-    let productoGuardado = document.getElementById('btnP');
-    
-    productoGuardado.addEventListener('click', function() {
-      let seleccionP = productoSeleccionado.value;
-      console.log('Opción seleccionada:', seleccionP);
-    });      
-   
+
+    totales.push({ vendedor, total });
+  }
+  console.log("\nSuma total de dinero recolectada por cada vendedor:");
+  for (let i = 0; i < totales.length; i++) {
+    alert(`${totales[i].vendedor}: $${totales[i].total}`);
+  }
+  return totales;
 }
-function capturarCantidad() {
-  
-  let cantidad = document.getElementById("cantidadInput").value;
-  
-  let cantidadCapturada = parseFloat(cantidad);  
-  
- console.log("Cantidad capturada:", cantidadCapturada);
-} 
+function determinarEmpleadoDelMes(totales) {
+  let maxTotal = 0;
+  let empleadoDelMes = "";
 
+  for (let i = 0; i < totales.length; i++) {
+    let total = totales[i].total;
 
+    if (total > maxTotal) {
+      maxTotal = total;
+      empleadoDelMes = totales[i].vendedor;
+    } else if (total === maxTotal) {
+      empleadoDelMes = "Empate";
+    }
+  }
+  alert(`Empleado del mes: ${empleadoDelMes}`);
+  return empleadoDelMes;
+}
 
-function continuarCaptura(opcion) {
-  continuar = opcion;
-  console.log("Opción seleccionada:", continuar);
+let ventas_capturadas = ingresarVentas();
+let totales = calcularTotal(ventas_capturadas);
+let empleadoDelMes = determinarEmpleadoDelMes(totales);
+
+console.log("Cantidad de productos vendidos por cada vendedor:");
+for (let i = 0; i < totales.length; i++) {
+  console.log(`${totales[i].vendedor}:`);
+  for (let j = 0; j < productos.length; j++) {
+    console.log(`${productos[j].nombre}: ${ventas_capturadas[i][productos[j].nombre]}`);
+  }
 }
 
 
-  elegirVendedor();
-  capturarVentas();
-  capturarCantidad();
-  continuarCaptura(); 
 
 
 
